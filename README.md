@@ -12,7 +12,7 @@
 
 ## Setup
 1. change the config in `config.php` according to your needs
-2. create a cronjob or something similar to execute `notifications_check.php` regularly (e.g. every day
+2. create a cronjob or something similar to execute `notifications_check.php` regularly (e.g. every day)
 3. Enjoy!
 
 ## Powered by
