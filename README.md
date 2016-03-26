@@ -6,7 +6,7 @@
 - overview website for adding and deleting games
 
 ## Requirements
-- PHP
+- PHP >= 5.4.0
 - a webserver
 - a way to execute a script regularly (like cron or runwhen)
 

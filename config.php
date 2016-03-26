@@ -8,4 +8,4 @@ $configEmailText =
     \r\n
     Your price watchdog";
 $configEmailSubject = "{gameName} is now available for your desired price";
-$configDataFile = 'data.json';
+$configDataFile = __DIR__ . '/data.json';

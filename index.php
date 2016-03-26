@@ -77,7 +77,7 @@ if (isset($_POST['submit']) && $_POST['submit'] != ''){
                     if ($game['active']){ ?>
                         <td><span class="text-success">active</span></td>
                     <?php } else {?>
-                        <td><span class="text-danger">paused</span></td>
+                        <td><span class="text-danger">disabled</span></td>
                     <?php } ?>
 
                     <td><?= $game['gameName']?></td>
