@@ -127,8 +127,8 @@ if (isset($_POST['submit']) && $_POST['submit'] != ''){
     <div class="row">
         <div class="col-md-10 col-ms-12 col-xs-12 col-md-offset-1">
             <p class="text-muted">
-                This software is not in any way affiliated with g2a.com<br>
-                by <a href="https://l3r.de">l3r</a>
+                This software is not in any way affiliated with g2a.com.<br>
+                <a href="https://github.com/lx4r/g2a-price-alert"> G2A price alert</a> by <a href="https://l3r.de">l3r</a>
             </p>
         </div>
     </div>
