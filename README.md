@@ -3,7 +3,7 @@
 
 ## Features
 - sends you notification emails when a game is available for a specific price or cheaper with informations about the seller (after sending that email the alert for this game is disabled and can be enabled again from the overview page)
-- overview website for adding and deleting games
+- an overview website for adding and deleting games
 
 ## Requirements
 - PHP >= 5.4.0
@@ -11,8 +11,8 @@
 - a way to execute a script regularly (like cron or runwhen)
 
 ## Setup
-1. Change the config in `config.php` according to your needs.
-2. Create a cronjob or something similar to execute `notifications_check.php` e.g. every day.
+1. change the config in `config.php` according to your needs
+2. create a cronjob or something similar to execute `notifications_check.php` regularly (e.g. every day
 3. Enjoy!
 
 ## Powered by
