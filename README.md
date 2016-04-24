@@ -1,4 +1,6 @@
-# G2A price alert
+# Chames
+as in **Ch**eap G**ames**, a web application to watch the prices of your favourite games on [G2A](https://www.g2a.com)
+
 ![Screenshot](screenshot.png)
 
 ## Features
