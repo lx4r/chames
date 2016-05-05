@@ -2,12 +2,13 @@
 require_once('config.php');
 require_once('get_game_data.php');
 require_once('data_management.php');
-
+// Get the game data from the json file
 $data = LoadData($configDataFile);
 if ($data == null){
     $data = array();
 }
 
+// If the form is submitted add the new game to the game list array ...
 if (isset($_POST['submit']) && $_POST['submit'] != ''){
     $newEntry = array(
         'gameName' => $_POST['gameName'],
@@ -16,10 +17,13 @@ if (isset($_POST['submit']) && $_POST['submit'] != ''){
         'active' => true
     );
     array_push($data, $newEntry);
+    // ... and save it to the json file again
     SaveData($configDataFile, $data);
+    // Remove a game from the array if a delete link is clicked and save the array to the json file again
 } elseif(isset($_GET['delete']) && $_GET['delete'] != '') {
     unset($data[intval($_GET['delete'])]);
     SaveData($configDataFile, $data);
+    // Reactivate an alert in the array if a reactivate link is clicked and save the array to the json file again
 } elseif(isset($_GET['reactivate']) && $_GET['reactivate'] != ''){
     $data[intval($_GET['reactivate'])]['active'] = true;
     SaveData($configDataFile, $data);
@@ -31,8 +35,7 @@ if (isset($_POST['submit']) && $_POST['submit'] != ''){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-    <title>G2A price alert</title>
-
+    <title>Chames</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -47,7 +50,7 @@ if (isset($_POST['submit']) && $_POST['submit'] != ''){
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-ms-12 col-xs-12 col-md-offset-1">
-            <h1>G2A price alert</h1>
+            <h1>Chames</h1>
         </div>
     </div>
     <div class="row">

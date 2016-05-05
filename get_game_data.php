@@ -18,4 +18,8 @@ function GetLowestPrice($gameID){
     $data = GetAuctionData($gameID);
     return $data[0];
 }
+
+function IsPriceLowEnough($price, $limit){
+    return $price <= $limit;
+}
 ?>
