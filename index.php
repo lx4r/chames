@@ -8,17 +8,40 @@ if ($data == null){
     $data = array();
 }
 
-// If the form is submitted add the new game to the game list array ...
+// If the form is submitted ...
 if (isset($_POST['submit']) && $_POST['submit'] != ''){
-    $newEntry = array(
-        'gameName' => $_POST['gameName'],
-        'gameID' => intval($_POST['gameID']),
-        'notificationLimit' => intval($_POST['notificationLimit']),
-        'active' => true
-    );
-    array_push($data, $newEntry);
-    // ... and save it to the json file again
-    SaveData($configDataFile, $data);
+    $errors = array();
+    /* validate the input validation */
+    if ($_POST["gameName"] == ''){
+        $errors["gameName"] = true;
+    }
+    if (($_POST["gameURL"] == '')){
+        $errors["gameURL"] = true;
+    }
+    $URLContains = strpos($_POST["gameURL"], "https://");
+    if (($URLContains == false) && ($URLContains != 0)){
+        $errors["gameURL"] = true;
+    }
+    if ($_POST["notificationLimit"] == ''){
+        echo "Hallo3";
+        $errors["notificationLimit"] = true;
+    }
+    print_r($errors);
+    echo "Test: ";
+
+    /* input successfully validated */
+    if (count($errors) == 0){
+        /* Add the new game to the game list array */
+        $newEntry = array(
+            'gameName' => $_POST['gameName'],
+            'gameID' => GetGameEntityID($_POST["gameURL"]),
+            'notificationLimit' => intval($_POST['notificationLimit']),
+            'active' => true
+        );
+        array_push($data, $newEntry);
+        // ... and save it to the json file again
+        SaveData($configDataFile, $data);
+    }
     // Remove a game from the array if a delete link is clicked and save the array to the json file again
 } elseif(isset($_GET['delete']) && $_GET['delete'] != '') {
     unset($data[intval($_GET['delete'])]);
@@ -49,17 +72,19 @@ if (isset($_POST['submit']) && $_POST['submit'] != ''){
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-ms-12 col-xs-12 col-md-offset-1">
+        <div class="col-md-12 col-ms-12 col-xs-12">
             <h1>Chames</h1>
+            <small>Your humble assistant to find cheap games.</small>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-10 col-ms-12 col-xs-12 col-md-offset-1">
+        <div class="col-md-12 col-ms-12 col-xs-12">
             <table class="table table-responsive">
                 <thead>
                 <tr>
                     <th>status</th>
                     <th>game</th>
+                    <th>your limit</th>
                     <th>cheapest price</th>
                     <th>country of seller</th>
                     <th>rating of seller</th>
@@ -84,6 +109,7 @@ if (isset($_POST['submit']) && $_POST['submit'] != ''){
                     <?php } ?>
 
                     <td><?= $game['gameName']?></td>
+                    <td><?= $game['notificationLimit']?></td>
                     <td><?= $auctionData['price'] ?></td>
                     <td><?= $auctionData['country'] ?></td>
                     <td><?= $auctionData['rating'] ?>% (based on <?= $auctionData['sells'] ?> sells)</td>
@@ -102,23 +128,23 @@ if (isset($_POST['submit']) && $_POST['submit'] != ''){
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-ms-12 col-xs-12 col-md-offset-1">
+        <div class="col-md-6 col-ms-12 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Add a game</div>
                 <div class="panel-body">
                     <form method="post">
-                        <div class="form-group">
+                        <div class="form-group<?php if (isset($errors["gameName"])){ echo " has-error";} ?>">
                             <label for="gameName">game name</label>
-                            <input type="text" class="form-control" id="gameName" name="gameName" placeholder="Kerbal Space Program" required>
+                            <input type="text" class="form-control" id="gameName" name="gameName" placeholder="Kerbal Space Program" value="<?php if(isset($_POST["gameName"])) echo $_POST["gameName"];?>" required>
                         </div>
-                        <div class="form-group">
-                            <label for="gameID">game entity_id</label>
-                            <input type="number" class="form-control" id="gameID" name="gameID" placeholder="4422" aria-describedby="idHelp" required>
-                            <p id="idHelp" class="help-block">Can be obtained by searching for "entity_id" in the source code of the game's page on g2a.com.</p>
+                        <div class="form-group<?php if (isset($errors["gameURL"])){ echo " has-error";} ?>">
+                            <label for="gameURL">game URL</label>
+                            <input type="url" class="form-control" id="gameURL" name="gameURL" placeholder="https://www.g2a.com/kerbal-space-program-steam-cd-key-global.html" aria-describedby="URLHelp" value="<?php if(isset($_POST["gameURL"])) echo $_POST["gameURL"];?>" required>
+                            <p id="URLHelp" class="help-block">URL of the game's page on g2a.com (including "https://")</p>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputFile">notification price limit</label>
-                            <input type="number" step="any" min="0" class="form-control" id="notificationLimit" name="notificationLimit" placeholder="10" aria-describedby="limitHelp" required>
+                        <div class="form-group<?php if (isset($errors["notificationLimit"])){ echo " has-error";} ?>">
+                            <label for="notificationLimit">notification price limit</label>
+                            <input type="number" step="any" min="0" class="form-control" id="notificationLimit" name="notificationLimit" placeholder="10" aria-describedby="limitHelp" value="<?php if(isset($_POST["notificationLimit"])) echo $_POST["notificationLimit"];?>" required>
                             <p id="limitHelp" class="help-block">When the game is available for this price or less an email will be sent to you.</p>
                         </div>
                         <input class="btn btn-success" type="submit" name="submit" value="Add">
@@ -128,10 +154,10 @@ if (isset($_POST['submit']) && $_POST['submit'] != ''){
         </div>
     </div>
     <div class="row">
-        <div class="col-md-10 col-ms-12 col-xs-12 col-md-offset-1">
+        <div class="col-md-12 col-ms-12 col-xs-12">
             <p class="text-muted">
                 This software is not in any way affiliated with g2a.com.<br>
-                <a href="https://github.com/lx4r/g2a-price-alert"> G2A price alert</a> by <a href="https://l3r.de">l3r</a>
+                <a href="https://github.com/lx4r/g2a-price-alert">Chames</a> by <a href="https://l3r.de">l3r</a>
             </p>
         </div>
     </div>
