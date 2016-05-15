@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteBase /
+RewriteRule ^config.php index.php [L]
+RewriteRule ^views/(.*) index.php [L]

@@ -21,7 +21,7 @@ The seller is from {sellerCountry} and has a rating of {sellerRating}% (based on
     'emailSubject' => '{gameName} is now available for your desired price',
 
     /* Location of the data file */
-    'dataFile' => __DIR__ . '/data.json',
+    'dataFile' => __DIR__ . '/data.php',
 
     /* Secret saved in the session to make it unique */
     'sessionSecret' => 'hlrMkPR8wH',
