@@ -40,6 +40,7 @@ if ($loggedIn){
             $newEntry = array(
                 'gameName' => $_POST['gameName'],
                 'gameID' => GetGameEntityID($_POST["gameURL"]),
+                'gameURL' => $_POST['gameURL'],
                 'notificationLimit' => intval($_POST['notificationLimit']),
                 'active' => true
             );
@@ -188,7 +189,7 @@ if ($loggedIn){
                                 <td>Email subject</td><td><?= $config['emailSubject'] ?></td>
                             </tr>
                             <tr>
-                                <td>Email subject</td><td><small><?= $config['emailText'] ?></small></td>
+                                <td>Email text</td><td><small><?= $config['emailText'] ?></small></td>
                             </tr>
                         </table>
                         <small>These settings and your password can be changed by edititing <code>config.php</code>.</small>

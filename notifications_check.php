@@ -12,20 +12,22 @@ if ($data == null){
         if ($game['active']){
             $auctionData = GetAuctionData($game['gameID']);
             if ($auctionData['price'] <= $game['notificationLimit']){
-                $emailText = $configEmailText;
-                $emailText = str_replace('{gameName}', $game['gameName'], $emailText);
-                $emailText = str_replace('{gamePrice}', $auctionData['price'], $emailText);
-                $emailText = str_replace('{sellerCountry}', $auctionData['country'], $emailText);
-                $emailText = str_replace('{sellerRating}', $auctionData['rating'], $emailText);
-                $emailText = str_replace('{sellerSells}', $auctionData['sells'], $emailText);
-                $emailSubject = str_replace('{gameName}', $game['gameName'], $configEmailSubject);
+
+                $placeholders = ['{gameName}', '{gamePrice}', '{gameURL}', '{sellerCountry}', '{sellerRating}', '{sellerSells}'];
+                $values = [$game['gameName'], $auctionData['price'], $game['gameURL'], $auctionData['country'], $auctionData['rating'], $auctionData['sells']];
+                $emailText = str_replace($placeholders, $values, $config['emailText']);
+
+                $emailSubject = str_replace('{gameName}', $game['gameName'], $config['emailSubject']);
+
                 $emailHeader =
                     'From: ' . $configSenderEmail . "\r\n" .
                     'X-Mailer: PHP/' . phpversion() . "\r\n" .
                     "Content-type: text/html; charset=UTF-8";
 
-                mail($configUserEmail, $emailSubject, $emailText, $emailHeader);
+                mail($config['userEmail'], $emailSubject, $emailText, $emailHeader);
+
                 $data[$key]['active'] = false;
+
                 if(!$changed){
                     $changed = true;
                 }
