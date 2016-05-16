@@ -25,6 +25,9 @@ The seller is from {sellerCountry} and has a rating of {sellerRating}% (based on
 
     /* Secret saved in the session to make it unique */
     'sessionSecret' => 'hlrMkPR8wH',
+
+    /* API secret used for authenticating the mobile app */
+    'apiSecret' => 'hlrMkPR8wH',
     
     /* Default password: "password" */
     'rightPasswordHash' => '$2y$10$ueBR3zRV3W/H.z2hBDxwh..16NeIwTVVQOCdBHTUVnj9ahVanXCcu',

@@ -1,6 +1,5 @@
 <?php
 session_start();
-define('chames', true);
 require_once('config.php');
 require_once('utils/logout.php');
 require_once('utils/login_check.php');
@@ -46,8 +45,12 @@ if ($loggedIn){
                 'active' => true
             );
             array_push($data, $newEntry);
-            // ... and save it to the json file again
+            /* and save it to the json file again */
             SaveData($config['dataFile'], $data);
+            /* empty the form fields */
+            $_POST['gameName'] = null;
+            $_POST['gameURL'] = null;
+            $_POST['notificationLimit'] = null;
         }
         // Remove a game from the array if a delete link is clicked and save the array to the json file again
     } elseif(isset($_GET['delete']) && $_GET['delete'] != '') {

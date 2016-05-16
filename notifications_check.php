@@ -1,11 +1,11 @@
 <?php
 require_once('config.php');
-require_once('get_game_data.php');
-require_once('data_management.php');
+require_once('utils/get_game_data.php');
+require_once('utils/data_management.php');
 
 $data = LoadData($config['dataFile']);
 
-if ($data == null){
+if ($data != false){
     $changed = false;
 
     foreach ($data as $key => $game){
@@ -20,7 +20,7 @@ if ($data == null){
                 $emailSubject = str_replace('{gameName}', $game['gameName'], $config['emailSubject']);
 
                 $emailHeader =
-                    'From: ' . $configSenderEmail . "\r\n" .
+                    'From: ' . $config['senderEmail'] . "\r\n" .
                     'X-Mailer: PHP/' . phpversion() . "\r\n" .
                     "Content-type: text/html; charset=UTF-8";
 

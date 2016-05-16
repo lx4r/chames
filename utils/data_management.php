@@ -1,5 +1,7 @@
 <?php
 
+define('chames', true);
+
 /*
  * structure in the JSON file for each game:
  * 'gameName' (String)
