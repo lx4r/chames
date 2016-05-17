@@ -1,13 +1,19 @@
 <?php
-if (isset($_POST['password']) && $_POST['password'] != ''){
-    $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+function randomString($length){
+    $result = "";
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $sessionSecret = '';
-    $length = 25;
     for ($i = 0; $i < $length; $i++) {
-        $sessionSecret .= $characters[rand(0, $charactersLength - 1)];
+        $result .= $characters[rand(0, $charactersLength - 1)];
     }
+}
+
+if (isset($_POST['password']) && $_POST['password'] != ''){
+    $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $sessionSecret = randomString(25);
+    $apiSecret = randomString(25);
 }
 ?>
 <!DOCTYPE html>
@@ -51,8 +57,9 @@ if (isset($_POST['password']) && $_POST['password'] != ''){
             <div class="col-md-6 col-md-offset-3 col-ms-12 col-xs-12">
                 <div class="panel panel-success">
                     <div class="panel-body">
-                        Please set the settings for the session secret and your password in <code>config.php</code> to this values:<br>
+                        Please replace the marked section in <code>config.php</code> with the following code (will set the session secret, the API secret and your password):<br>
                         <code>'sessionSecret' => '<?= $sessionSecret ?>',</code><br>
+                        <code>'apiSecret' => '<?= $sessionSecret ?>',</code><br>
                         <code> 'rightPasswordHash' => '<?= $passwordHash ?>',</code>
                     </div>
                 </div>

@@ -22,7 +22,10 @@ The seller is from {sellerCountry} and has a rating of {sellerRating}% (based on
 
     /* Location of the data file */
     'dataFile' => __DIR__ . '/data.php',
-
+    
+    /* -------------
+    Replace this section with the values from setup.php */
+    
     /* Secret saved in the session to make it unique */
     'sessionSecret' => 'hlrMkPR8wH',
 
@@ -31,4 +34,6 @@ The seller is from {sellerCountry} and has a rating of {sellerRating}% (based on
     
     /* Default password: "password" */
     'rightPasswordHash' => '$2y$10$ueBR3zRV3W/H.z2hBDxwh..16NeIwTVVQOCdBHTUVnj9ahVanXCcu',
+    
+    // -------------
 ];

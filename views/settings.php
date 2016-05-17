@@ -15,6 +15,12 @@
                     <tr>
                         <td>Email text</td><td><small><?= $config['emailText'] ?></small></td>
                     </tr>
+                    <tr>
+                        <td>
+                            API secret text<br>
+                            for <a href="https://github.com/lx4r/chames">the app</a>
+                        </td><td><small><?= $config['apiSecret'] ?></small></td>
+                    </tr>
                 </table>
                 <small>These settings and your password can be changed by edititing <code>config.php</code>.</small>
             </div>

@@ -6,15 +6,17 @@ as in **Ch**eap G**ames**, a web application to watch the prices of your favouri
 ## Features
 - sends you notification emails when a game is available for a specific price or cheaper with informations about the seller (after sending that email the alert for this game is disabled and can be enabled again from the overview page)
 - an overview website for adding and deleting games
+- API for the [Android app](https://github.com/lx4r/chames-app)
 
 ## Requirements
 - PHP >= 5.4.0
-- a webserver
+- a webserver that supports `.htaccess` files
 - a way to execute a script regularly (like cron or runwhen)
 
 ## Setup
-1. change the config in `config.php` according to your needs
-2. create a cronjob or something similar to execute `notifications_check.php` regularly (e.g. every day)
+1. go to `setup.php` with your browser and copy the configuration generated into `config.php`
+2. change the other options in in `config.php` according to your needs
+3. create a cronjob or something similar to execute `notifications_check.php` regularly (e.g. every day)
 3. Enjoy!
 
 ## Powered by
