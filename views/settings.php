@@ -18,7 +18,7 @@
                     <tr>
                         <td>
                             API secret text<br>
-                            for <a href="https://github.com/lx4r/chames">the app</a>
+                            for <a href="https://github.com/lx4r/chames-app">the app</a>
                         </td><td><small><?= $config['apiSecret'] ?></small></td>
                     </tr>
                 </table>
