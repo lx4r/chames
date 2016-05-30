@@ -37,25 +37,33 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             /* Request type given? If yes: Differ between request types */
             if (isset($request['type']) && $request['type'] != ''){
 
+
                 /* Request type: List of the games and their price status */
                 if ($request['type'] == 'list'){
-                    $id = 0;
-                    foreach ($data as $key => $game){
-                        $auctionData = GetAuctionData($game['gameID']);
-                        $priceLowEnough = IsPriceLowEnough($auctionData['price'], $game['notificationLimit']);
-                        $result[] = [
-                            'id' => $id,
-                            'gameName' => $game['gameName'],
-                            'isPriceLowEnough' => $priceLowEnough
-                        ];
-                        $id++;
+                    /* Check whether any games exist */
+                    if (count($data) > 0){
+                        $id = 0;
+                        foreach ($data as $key => $game){
+                            $auctionData = GetAuctionData($game['gameID']);
+                            $priceLowEnough = IsPriceLowEnough($auctionData['price'], $game['notificationLimit']);
+                            $result[] = [
+                                'id' => $id,
+                                'gameName' => $game['gameName'],
+                                'isPriceLowEnough' => $priceLowEnough
+                            ];
+                            $id++;
+                        }
+                    } else {
+                        $result = ['error' => 'noGames'];
                     }
 
                     /* Request type: all data for one game */
-                } elseif ($request['type'] == 'detail' && isset($request['id']) && $request['id'] != ''){
+                } elseif ($request['type'] == 'detail' && isset($request['id'])){
+
                     $game = $data[intval($_GET['id'])];
                     $auctionData = GetAuctionData(intval($game['gameID']));
                     $priceLowEnough = IsPriceLowEnough($auctionData['price'], $game['notificationLimit']);
+
                     $result = [
                         'gameName' => $game['gameName'],
                         'gamePrice' => floatval($auctionData['price']),
@@ -63,11 +71,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'sellerRating' => $auctionData['rating'],
                         'sellerSells' => $auctionData['sells'],
                         'sellerCountry' => $auctionData['country'],
-                        'notificationLimit' => $game['notificationLimit'],
+                        'notificationLimit' => $game['notificationLimit']
                     ];
                 }
             } else {
-                $result = ['error' => true];
+                $result = ['error' => 'request'];
             }
         }
     } else {
