@@ -4,10 +4,10 @@ function randomString($length){
     $result = "";
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
-    $sessionSecret = '';
     for ($i = 0; $i < $length; $i++) {
         $result .= $characters[rand(0, $charactersLength - 1)];
     }
+    return $result;
 }
 
 if (isset($_POST['password']) && $_POST['password'] != ''){
@@ -58,9 +58,7 @@ if (isset($_POST['password']) && $_POST['password'] != ''){
                 <div class="panel panel-success">
                     <div class="panel-body">
                         Please replace the marked section in <code>config.php</code> with the following code (will set the session secret, the API secret and your password):<br>
-                        <code>'sessionSecret' => '<?= $sessionSecret ?>',</code><br>
-                        <code>'apiSecret' => '<?= $sessionSecret ?>',</code><br>
-                        <code> 'rightPasswordHash' => '<?= $passwordHash ?>',</code>
+                        <textarea readonly style="width: 100%; height: 100px;">'sessionSecret' => '<?= $sessionSecret ?>',<?= PHP_EOL ?>'apiSecret' => '<?= $apiSecret ?>',<?= PHP_EOL ?>'rightPasswordHash' => '<?= $passwordHash ?>',</textarea>
                     </div>
                 </div>
             </div>
