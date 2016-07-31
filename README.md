@@ -3,10 +3,6 @@ as in **ch**eap g**ames**, a small web application to watch the prices of your f
 
 ![Screenshot](screenshot.png)
 
-## Important note
-
-Due to an API change by G2A this software is not functional at the moment. I'll try to fix it as soon as I find the time. Sorry. :-(
-
 ## Features
 - sends you notification emails when a game is available for a specific price or cheaper with informations about the seller (after sending that email the alert for this game is disabled and can be enabled again from the overview page)
 - an overview website for adding and deleting games
