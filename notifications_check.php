@@ -13,9 +13,21 @@ if ($data != false){
             $auctionData = GetAuctionData($game['gameID']);
             if ($auctionData['price'] <= $game['notificationLimit']){
 
+                /* If the saved lowest price is higher than the current price replace it with the current price and then save the changes to the JSON file */
+                if ($game['lowestPrice'] > $auctionData['price']){
+                    $data[$key]['lowestPrice'] = $auctionData['price'];
+                    $changed = true;
+                }
+
+                if ($game['lowestPrice'] == $auctionData['price']){
+                    $lowestPrice = "lowest yet";
+                } else {
+                    $lowest = "lowest: " . $game['lowestPrice'];
+                }
+
                 /* Replace the placeholders in the email strings with the actual values */
-                $placeholders = ['{gameName}', '{gamePrice}', '{gameURL}', '{sellerCountry}', '{sellerRating}', '{sellerSells}'];
-                $values = [$game['gameName'], $auctionData['price'], $game['gameURL'], $auctionData['country'], $auctionData['rating'], $auctionData['sells']];
+                $placeholders = ['{gameName}', '{gamePrice}', '{gameURL}', '{sellerCountry}', '{sellerRating}', '{sellerSells}', '{lowestPrice}'];
+                $values = [$game['gameName'], $auctionData['price'], $game['gameURL'], $auctionData['country'], $auctionData['rating'], $auctionData['sells'], $lowestPrice];
                 $emailText = str_replace($placeholders, $values, $config['emailText']);
                 $emailSubject = str_replace('{gameName}', $game['gameName'], $config['emailSubject']);
 
@@ -28,9 +40,7 @@ if ($data != false){
                 mail($config['userEmail'], $emailSubject, $emailText, $emailHeader);
                 $data[$key]['active'] = false;
 
-                if(!$changed){
-                    $changed = true;
-                }
+                $changed = true;
             }
         }
     }

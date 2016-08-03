@@ -19,8 +19,8 @@
             foreach ($data as $key => $game) {
                 $auctionData = GetAuctionData($game['gameID']);
 
-                /* If the saved lowest price is higher than the current price replace it with the current price and then save the changed to the JSON file (done in index.php) */
-                if ($game['lowestPrice'] > $auctionData['price']){
+                /* If the saved lowest price is higher than the current price replace it with the current price and then save the changes to the JSON file (done in index.php) */
+                if ($game['lowestPrice'] == null || $game['lowestPrice'] > $auctionData['price']){
                     $data[$key]['lowestPrice'] = $auctionData['price'];
                     $changed = true;
                 }

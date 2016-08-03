@@ -9,7 +9,7 @@ $config= [
     /* The HTML body of the notification email */
     /* Available placeholders that will be replaced by the game's information: {gameName}, {gamePrice}, {gameURL}, {sellerCountry}, {sellerRating}, {sellerSells} */
     'emailText' =>
-        'Hey,<br>the game {gameName} is now <a href="{gameURL}">available on g2a.com</a> for {gamePrice}.<br>
+        'Hey,<br>the game {gameName} is now <a href="{gameURL}">available on g2a.com</a> for {gamePrice} ({lowestPrice}).<br>
 The seller is from {sellerCountry} and has a rating of {sellerRating}% (based on {sellerSells} sells).<br>
     <br>
     The alert for this game is now disabled. Please go to the web interface of this tool to reactivate it.<br>
