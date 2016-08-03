@@ -15,8 +15,22 @@
             </thead>
             <tbody>
             <?php
+            $changed = false;
             foreach ($data as $key => $game) {
                 $auctionData = GetAuctionData($game['gameID']);
+
+                /* If the saved lowest price is higher than the current price replace it with the current price and then save the changed to the JSON file (done in index.php) */
+                if ($game['lowestPrice'] > $auctionData['price']){
+                    $data[$key]['lowestPrice'] = $auctionData['price'];
+                    $changed = true;
+                }
+
+                if ($game['lowestPrice'] == $auctionData['price']){
+                    $lowest = "lowest yet";
+                } else {
+                    $lowest = "lowest: " . $game['lowestPrice'];
+                }
+
                 if ($auctionData['price'] <= $game['notificationLimit']) {
                     ?>
                     <tr class="success">
@@ -31,7 +45,7 @@
 
                 <td><a href="<?= $game['gameURL'] ?>"><?= $game['gameName'] ?></a></td>
                 <td><?= $game['notificationLimit'] ?></td>
-                <td><?= $auctionData['price'] ?></td>
+                <td><b><?= $auctionData['price'] ?></b> (<?= $lowest ?>)</td>
                 <td><?= $auctionData['country'] ?></td>
                 <td><?= $auctionData['rating'] ?>% (based on <?= $auctionData['sells'] ?> sells)</td>
                 <td>

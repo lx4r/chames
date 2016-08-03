@@ -9,6 +9,7 @@ define('chames', true);
  * 'gameURL' (String)
  * 'notificationLimit' (double)
  * 'active' (boolean)
+ * 'lowestPrice' (double)
  */
 
 /* Load the games' data from the PHP/JSON file and return it */
@@ -26,7 +27,6 @@ function SaveData($file, $newData){
     $data = '<?php if (!defined(\'chames\')) exit() ?>' . json_encode($newData, JSON_UNESCAPED_UNICODE);
     return file_put_contents($file, $data);
 }
-
 
 
 ?>

@@ -17,7 +17,7 @@
                     </tr>
                     <tr>
                         <td>
-                            API secret text<br>
+                            API secret<br>
                             for <a href="https://github.com/lx4r/chames-app">the app</a>
                         </td><td><small><?= $config['apiSecret'] ?></small></td>
                     </tr>

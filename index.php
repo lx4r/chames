@@ -36,13 +36,19 @@ if ($loggedIn){
 
         /* input successfully validated */
         if (count($errors) == 0){
+
+            /* Get the current price of the game in order to fill the 'lowestPrice' field */
+            $gameID = GetGameEntityID($_POST["gameURL"]);
+            $lowestPrice = GetAuctionData($gameID)['price'];
+
             /* Add the new game to the game list array */
             $newEntry = array(
                 'gameName' => $_POST['gameName'],
                 'gameID' => GetGameEntityID($_POST["gameURL"]),
                 'gameURL' => $_POST['gameURL'],
                 'notificationLimit' => intval($_POST['notificationLimit']),
-                'active' => true
+                'active' => true,
+                'lowestPrice' => $lowestPrice
             );
             array_push($data, $newEntry);
             /* and save it to the json file again */
@@ -91,6 +97,10 @@ if ($loggedIn){
     if ($loggedIn) {
         if ($data){
             require_once ('views/game_list.php');
+            /* Save the changes to the JSON file if the lowest price of a game has been updated */
+            if ($changed){
+                SaveData($config['dataFile'], $data);
+            }
         }
         require_once ('views/add_game.php');
         require_once ('views/settings.php');
