@@ -16,7 +16,7 @@ function GetCountry($code){
 }
 function GetLowestPrice($gameID){
     $data = GetAuctionData($gameID);
-    return $data[0];
+    return $data['price'];
 }
 
 /* Finds a game's entity ID (needed for using the G2A API) by extracting it from the game's page on G2A */
