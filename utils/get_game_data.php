@@ -3,7 +3,7 @@ function GetAuctionData($gameID){
     $data = json_decode(file_get_contents('https://www.g2a.com/marketplace/product/auctions/?id=' . $gameID), true);
     $data = array_values(array_values($data)[0])[0];
     $result = array();
-    $result['price'] = $data['p'];
+    $result['price'] = (float) $data['p'];
     $result['rating'] = $data['r'];
     $result['sells'] = $data['tr'];
     $result['country'] = GetCountry($data['c']);
