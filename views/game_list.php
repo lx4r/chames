@@ -43,7 +43,7 @@
                     <td><span class="text-danger">disabled</span></td>
                 <?php } ?>
 
-                <td><a href="<?= $game['gameURL'] ?>"><?= $game['gameName'] ?></a></td>
+                <td><a target="_blank" href="<?= $game['gameURL'] ?>"><?= $game['gameName'] ?></a></td>
                 <td><?= $game['notificationLimit'] ?></td>
                 <td><b><?= $auctionData['price'] ?></b> (<?= $lowest ?>)</td>
                 <td><?= $auctionData['country'] ?></td>
@@ -62,3 +62,4 @@
         </table>
     </div>
 </div>
+
