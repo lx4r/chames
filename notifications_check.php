@@ -11,14 +11,14 @@ if ($data != false){
     foreach ($data as $key => $game){
         if ($game['active']){
             $auctionData = GetAuctionData($game['gameID']);
+
+            /* If the saved lowest price is higher than the current price replace it with the current price and then save the changes to the JSON file */
+            if ($game['lowestPrice'] > $auctionData['price']){
+                $data[$key]['lowestPrice'] = $auctionData['price'];
+                $changed = true;
+            }
+
             if ($auctionData['price'] <= $game['notificationLimit']){
-
-                /* If the saved lowest price is higher than the current price replace it with the current price and then save the changes to the JSON file */
-                if ($game['lowestPrice'] > $auctionData['price']){
-                    $data[$key]['lowestPrice'] = $auctionData['price'];
-                    $changed = true;
-                }
-
                 if ($game['lowestPrice'] == $auctionData['price']){
                     $lowestPrice = "lowest yet";
                 } else {
