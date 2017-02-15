@@ -28,7 +28,7 @@
                 if ($game['lowestPrice'] == $auctionData['price']){
                     $lowest = "lowest yet";
                 } else {
-                    $lowest = "lowest: " . $game['lowestPrice'];
+                    $lowest = "lowest: " . sprintf('%.2f &euro;', $game['lowestPrice']);
                 }
 
                 if ($auctionData['price'] <= $game['notificationLimit']) {
@@ -44,8 +44,8 @@
                 <?php } ?>
 
                 <td><a target="_blank" href="<?= $game['gameURL'] ?>"><?= $game['gameName'] ?></a></td>
-                <td><?= $game['notificationLimit'] ?></td>
-                <td><b><?= $auctionData['price'] ?></b> (<?= $lowest ?>)</td>
+                <td><?= sprintf('%.2f &euro;', $game['notificationLimit']) ?></td>
+                <td><b><?= sprintf('%.2f &euro;', $auctionData['price']) ?></b> (<?= $lowest ?>)</td>
                 <td><?= $auctionData['country'] ?></td>
                 <td><?= $auctionData['rating'] ?>% (based on <?= $auctionData['sells'] ?> sells)</td>
                 <td>
