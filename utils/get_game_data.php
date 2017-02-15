@@ -7,6 +7,7 @@ function GetAuctionData($gameID){
     $result['rating'] = $data['r'];
     $result['sells'] = $data['tr'];
     $result['country'] = GetCountry($data['c']);
+    $result['currency'] = preg_replace("/^[0-9\., ]*/", "", $data['f']);
     return $result;
 }
 
