@@ -11,8 +11,14 @@ function GetAuctionData($gameID){
     return $result;
 }
 
+$COUNTRY_CODE_DATA = array();
 function GetCountry($code){
+    global $COUNTRY_CODE_DATA;
+    if (isset($COUNTRY_CODE_DATA[$code])) {
+	return $COUNTRY_CODE_DATA[$code];
+    }
     $data = json_decode(file_get_contents('http://restcountries.eu/rest/v1/alpha/' . $code), true);
+    $COUNTRY_CODE_DATA[$code] = $data['name'];
     return $data['name'];
 }
 function GetLowestPrice($gameID){
