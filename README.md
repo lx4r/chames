@@ -22,6 +22,10 @@ as in **ch**eap g**ames**, a small web application to watch the prices of your f
 ## Powered by
 g2a API, [REST Countries](https://restcountries.eu), [Bootstrap](http://getbootstrap.com)
 
+## License
+
+Chames is licensed under the MIT License
+
 ----
 This software is not in any way affiliated with g2a.com.  
 Author: lx4r <https://l3r.de>
