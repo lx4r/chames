@@ -46,7 +46,7 @@ if ($loggedIn){
                 'gameName' => $_POST['gameName'],
                 'gameID' => GetGameEntityID($_POST["gameURL"]),
                 'gameURL' => $_POST['gameURL'],
-                'notificationLimit' => intval($_POST['notificationLimit']),
+                'notificationLimit' => floatval($_POST['notificationLimit']),
                 'active' => true,
                 'lowestPrice' => $lowestPrice
             );

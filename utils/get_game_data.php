@@ -3,20 +3,27 @@ function GetAuctionData($gameID){
     $data = json_decode(file_get_contents('https://www.g2a.com/marketplace/product/auctions/?id=' . $gameID), true);
     $data = array_values(array_values($data)[0])[0];
     $result = array();
-    $result['price'] = $data['p'];
+    $result['price'] = (float) $data['p'];
     $result['rating'] = $data['r'];
     $result['sells'] = $data['tr'];
     $result['country'] = GetCountry($data['c']);
+    $result['currency'] = preg_replace("/^[0-9\., ]*/", "", $data['f']);
     return $result;
 }
 
+$COUNTRY_CODE_DATA = array();
 function GetCountry($code){
+    global $COUNTRY_CODE_DATA;
+    if (isset($COUNTRY_CODE_DATA[$code])) {
+	return $COUNTRY_CODE_DATA[$code];
+    }
     $data = json_decode(file_get_contents('http://restcountries.eu/rest/v1/alpha/' . $code), true);
+    $COUNTRY_CODE_DATA[$code] = $data['name'];
     return $data['name'];
 }
 function GetLowestPrice($gameID){
     $data = GetAuctionData($gameID);
-    return $data[0];
+    return $data['price'];
 }
 
 /* Finds a game's entity ID (needed for using the G2A API) by extracting it from the game's page on G2A */
