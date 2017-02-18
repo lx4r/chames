@@ -49,7 +49,7 @@
                 <td><?= $auctionData['country'] ?></td>
                 <td><?= $auctionData['rating'] ?>% (based on <?= $auctionData['sells'] ?> sells)</td>
                 <td>
-                    <a class="btn btn-danger btn-xs" href="?delete=<?= $key ?>"">delete</a>
+                    <a class="btn btn-danger btn-xs" href="?delete=<?= $key ?>">delete</a>
                 </td>
                 <td>
                     <?php if ($game['active'] == false) { ?>
