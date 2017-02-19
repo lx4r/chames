@@ -29,7 +29,7 @@ Chames is licensed under the MIT License
 ----
 This software is not in any way affiliated with g2a.com.  
 Author: lx4r (<https://l3r.de>)  
-and [awesome contributors]: [jburg88](https://github.com/jburg88), [solygen](https://github.com/solygen)
+and awesome contributors: [jburg88](https://github.com/jburg88), [solygen](https://github.com/solygen)
 
 If you have a question regarding Chames or if you want to give me feedback about my code please don't hesitate to contact me [via Twitter](https://twitter.com/lx4r) or [in some other way](https://l3r.de/en/contact).
 
