@@ -24,7 +24,7 @@ function LoadData($file){
 
 /* Save the games' data to the json file */
 function SaveData($file, $newData){
-    $data = '<?php if (!defined(\'chames\')) exit() ?>' . json_encode($newData, JSON_UNESCAPED_UNICODE);
+    $data = '<?php if (!defined(\'chames\')) exit() ?>' . json_encode($newData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     return file_put_contents($file, $data);
 }
 

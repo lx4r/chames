@@ -12,6 +12,10 @@ if ($data != false){
         if ($game['active']){
             $auctionData = GetAuctionData($game['gameID']);
 
+            if ($auctionData === false) {
+                continue;
+            }
+
             /* If the saved lowest price is higher than the current price replace it with the current price and then save the changes to the JSON file */
             if ($game['lowestPrice'] > $auctionData['price']){
                 $data[$key]['lowestPrice'] = $auctionData['price'];
