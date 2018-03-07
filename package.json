@@ -1,0 +1,15 @@
+{
+  "name": "chames",
+  "version": "1.1",
+  "description": "a small web application to watch the prices of your favourite games on G2A",
+  "main": "index.js",
+  "repository": "https://github.com/lx4r/chames",
+  "author": "lx4r <hallo@l3r.de>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "@types/node": "^9.4.6"
+  }
+}
