@@ -1,8 +1,0 @@
-RewriteEngine on
-RewriteBase /
-RewriteRule ^config.php index.php [L]
-RewriteRule ^views/(.*) index.php [L]
-RewriteRule ^utils/(.*) index.php [L]
-RewriteRule ^notification_check.php index.php [L]
-
-
