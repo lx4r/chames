@@ -131,5 +131,5 @@ fabric.properties
 # End of https://www.gitignore.io/api/node,webstorm
 
 # ignore JS compiled by TypeScript
-src/*.js
-src/*.map
+dist/*.js
+dist/*.map

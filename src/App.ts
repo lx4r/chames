@@ -1,6 +1,7 @@
 // PROTOTYPE
 
 import * as express from 'express'
+import {PriceCheck} from './PriceCheck'
 
 class App {
     public express;
@@ -14,22 +15,19 @@ class App {
     private mountRoutes (): void {
         const router = express.Router();
         router.get('/', (req, res) => {
-            res.json({
-                html: 'Hello World!'
-            });
-            this.checkPrice("https://www.g2a.com/kerbal-space-program-steam-key-global-i10000014989005").then((html) => {
-                var fs = require('fs');
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, "text/html");
-                doc.getElementById("__schema.org");
-                console.log(doc);
+            const priceChecker = new PriceCheck();
+            priceChecker.getGamePrice(4422).then((price) => {
+                res.json({
+                    html: price
+                });
+            }, (err) => {
+                console.log('Couldn\'t get the price', err);
+                res.json({
+                    html: 'error'
+                });
             });
         });
         this.express.use('/', router);
-    }
-
-    private checkPrice(gameID:number):Promise<string>{
-        return this.getContentFromURL(url);
     }
 
 }

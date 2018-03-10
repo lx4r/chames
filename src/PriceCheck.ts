@@ -1,9 +1,9 @@
-class PriceCheck {
+export class PriceCheck {
     // TODO: use Singleton pattern for this class?
 
     // TODO: use enums for this?
     static G2A_API_URL = 'https://www.g2a.com/marketplace/product/auctions/?id=';
-    static G2A_API_LOWEST_PRICE_ATTRIBUTE = 'lowestPrice';
+    static G2A_API_LOWEST_PRICE_ATTRIBUTE = 'lowest_price';
 
     public getGamePrice(gameID: number):Promise<number> {
         const gameAPIURL = PriceCheck.G2A_API_URL + gameID;
