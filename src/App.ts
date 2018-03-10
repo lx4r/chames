@@ -2,6 +2,7 @@
 
 import * as express from 'express'
 import {PriceCheck} from './PriceCheck'
+import {DB} from './DB';
 
 class App {
     public express;
@@ -26,6 +27,7 @@ class App {
                     html: 'error'
                 });
             });
+            const db = new DB();
         });
         this.express.use('/', router);
     }
