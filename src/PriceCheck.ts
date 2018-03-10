@@ -1,15 +1,13 @@
+import {Api} from './Api';
+
 export class PriceCheck {
     // TODO: use Singleton pattern for this class?
 
-    // TODO: use enums for this?
-    static G2A_API_URL = 'https://www.g2a.com/marketplace/product/auctions/?id=';
-    static G2A_API_LOWEST_PRICE_ATTRIBUTE = 'lowest_price';
-
     public getGamePrice(gameID: number):Promise<number> {
-        const gameAPIURL = PriceCheck.G2A_API_URL + gameID;
+        const gameAPIURL = Api.BaseURL + gameID;
         return this.getJSONFromURL(gameAPIURL).then((jsonObject:object) => {
-            if (jsonObject.hasOwnProperty(PriceCheck.G2A_API_LOWEST_PRICE_ATTRIBUTE)){
-                return jsonObject[PriceCheck.G2A_API_LOWEST_PRICE_ATTRIBUTE] as number;
+            if (jsonObject.hasOwnProperty(Api.LowestPriceAttributeName)){
+                return jsonObject[Api.LowestPriceAttributeName] as number;
             } else {
                 throw new Error('lowest price attribute missing in JSON');
             }
