@@ -6,13 +6,12 @@ export class DB{
 
     private fs;
     private jsonObject:object;
-    private games:Map<number,Game>;
-    private 
+    private maps:Map<string, Map<number,object>>;
 
     constructor(){
         this.fs = require('fs');
         this.getDBFromFile().then((database) => {
-            console.log(database);
+            this.jsonObject = database;
         })
     }
 
@@ -30,7 +29,28 @@ export class DB{
         })
     }
 
-    public getGame():Game{
-        this.jsonObject.games
+    public getObject(name:string):object{
+        if (this.jsonObject.hasOwnProperty(name)){
+            return this.jsonObject[name];
+        } else {
+            // invalid object name -> throw Error
+            throw new Error("an object with the name " + name  + " does not exist in the database");
+        }
+    }
+
+    public getObjectFromMap(nameOfMap: string, objectID: number):object{
+        const map = this.maps.get(nameOfMap);
+        if (map != undefined){
+            const object = map.get(objectID);
+            if (object != undefined){
+                return object;
+            } else {
+                // object does not exist -> throw error
+                throw new Error("an object with the id " + objectID + " does not exist in the map " + nameOfMap);
+            }
+        } else {
+            // map does not exist -> throw Error
+            throw new Error("a map with the name " + nameOfMap + " does not exist in the database");
+        }
     }
 }
