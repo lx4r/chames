@@ -28,6 +28,10 @@ class App {
                 });
             });
             const db = new DB();
+            // db.saveObject("yay", {test1: 42, test2: 42});
+            db.saveObjectInMap("object1", {test1: 42, test2: 42}, "newMap");
+            console.log(db.getObjectFromMap('newMap', 'object1'));
+            db.saveObject('test', {test2: "yay"});
         });
         this.express.use('/', router);
     }

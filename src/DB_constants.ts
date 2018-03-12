@@ -1,3 +1,4 @@
 export enum DBConstants {
-    DBFilePath = '../data/db.json',
+    // TODO: move db file
+    DBFilePath = 'data/db.json',
 }
