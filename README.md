@@ -3,6 +3,10 @@ as in **ch**eap g**ames**, a small web application to watch the prices of your f
 
 ![Screenshot](screenshot.png)
 
+## Current status
+
+Due to the new structure of the G2A website adding new games to Chames doesn't seem to be working right now. The discussion about this problem can be found in [issue #14](https://github.com/lx4r/chames/issues/14). Pull requests are always appreciated. O:-)
+
 ## Features
 - sends you notification emails when a game is available for a specific price or cheaper with informations about the seller (after sending that email the alert for this game is disabled and can be enabled again from the overview page)
 - an overview website for adding and deleting games
