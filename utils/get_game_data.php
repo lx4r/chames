@@ -36,11 +36,10 @@ function GetLowestPrice($gameID){
     return ($data !== false ? $data['price'] : false);
 }
 
-/* Finds a game's entity ID (needed for using the G2A API) by extracting it from the game's page on G2A */
+/* Finds a game's entity ID (needed for using the G2A API) by extracting it from the game's URL on G2A */
 function GetGameEntityID($gameURL){
-    $gameSite = file_get_contents($gameURL);
-    /* Find the game's ID in the page's HTML */
-    preg_match("/(?<=productID = )(.*)(?=;)/", $gameSite, $entityID);
+    /* Find the game's ID in the page's URL */
+    preg_match("/\d{14}/", $gameURL, $entityID);
     if (count($entityID) >= 1){
         return $entityID[0];
     } else {
