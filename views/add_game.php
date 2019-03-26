@@ -14,7 +14,7 @@
                     <div class="form-group<?php if (isset($errors["gameURL"])) {echo " has-error";} ?>">
                         <label for="gameURL">game URL</label>
                         <input type="url" class="form-control" id="gameURL" name="gameURL"
-                               placeholder="https://www.g2a.com/kerbal-space-program-steam-cd-key-global.html"
+                               placeholder="https://www.g2a.com/kerbal-space-program-steam-key-global-i10000014989005"
                                aria-describedby="URLHelp"
                                value="<?php if (isset($_POST["gameURL"])) echo $_POST["gameURL"]; ?>" required>
                         <p id="URLHelp" class="help-block">URL of the game's page on g2a.com (including

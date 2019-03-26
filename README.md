@@ -3,10 +3,6 @@ as in **ch**eap g**ames**, a small web application to watch the prices of your f
 
 ![Screenshot](screenshot.png)
 
-## Current status
-
-Due to the new structure of the G2A website adding new games to Chames doesn't seem to be working right now. The discussion about this problem can be found in [issue #14](https://github.com/lx4r/chames/issues/14). Pull requests are always appreciated. O:-)
-
 ## Features
 - sends you notification emails when a game is available for a specific price or cheaper with informations about the seller (after sending that email the alert for this game is disabled and can be enabled again from the overview page)
 - an overview website for adding and deleting games
@@ -32,7 +28,7 @@ Chames is licensed under the MIT License
 ----
 This software is not in any way affiliated with g2a.com.  
 Author: lx4r (<https://l3r.de>)  
-and awesome contributors: [jburg88](https://github.com/jburg88), [solygen](https://github.com/solygen)
+and awesome contributors: [jburg88](https://github.com/jburg88), [solygen](https://github.com/solygen), [m-villalilla](https://github.com/m-villalilla)
 
 If you have a question regarding Chames or if you want to give me feedback about my code please don't hesitate to contact me [via Twitter](https://twitter.com/lx4r).
 
