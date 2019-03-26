@@ -4,7 +4,19 @@ function GetAuctionData($gameID){
     if (isset($AUCTION_DATA[$gameID])) {
         return $AUCTION_DATA[$gameID];
     }
-    $data = json_decode(file_get_contents('https://www.g2a.com/marketplace/product/auctions/?id=' . $gameID), true);
+
+    $context = stream_context_create(array('http' =>
+        array(
+            'method'  => 'GET',
+            'header'  => array(
+                    'accept-encoding: *',
+                    'accept-language: *'
+            )
+        )
+    ));
+
+    $data = json_decode(file_get_contents('https://www.g2a.com/marketplace/product/auctions/?id=' . $gameID, false, $context), true);
+
     if (isset($data['a'])) {
         $data = array_values(array_values($data)[0])[0];
         $result = array();
